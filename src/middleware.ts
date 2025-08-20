@@ -1,0 +1,124 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// Rate limiting store (in production, use Redis or similar)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 100; // 100 requests per minute
+
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+
+  // Security headers (additional to next.config.js)
+  response.headers.set('X-DNS-Prefetch-Control', 'off');
+  response.headers.set('X-Download-Options', 'noopen');
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
+
+  // Only apply strict security in production
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  // Rate limiting for API routes
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const now = Date.now();
+    
+    const clientData = rateLimitStore.get(clientIP);
+    
+    if (!clientData || now > clientData.resetTime) {
+      // First request or window expired
+      rateLimitStore.set(clientIP, {
+        count: 1,
+        resetTime: now + RATE_LIMIT_WINDOW
+      });
+    } else if (clientData.count >= RATE_LIMIT_MAX_REQUESTS) {
+      // Rate limit exceeded
+      return new NextResponse(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': '60'
+          }
+        }
+      );
+    } else {
+      // Increment request count
+      clientData.count++;
+    }
+  }
+
+  // Bot protection (only in production)
+  if (isProduction) {
+    const userAgent = request.headers.get('user-agent') || '';
+    const suspiciousPatterns = [
+      /bot/i,
+      /crawler/i,
+      /spider/i,
+      /scraper/i
+    ];
+
+    // Allow legitimate bots (Google, Bing, etc.)
+    const allowedBots = [
+      'googlebot',
+      'bingbot',
+      'slurp',
+      'duckduckbot',
+      'facebookexternalhit',
+      'twitterbot',
+      'linkedinbot'
+    ];
+
+    const isAllowedBot = allowedBots.some(bot => userAgent.toLowerCase().includes(bot));
+    
+    if (!isAllowedBot && suspiciousPatterns.some(pattern => pattern.test(userAgent))) {
+      return new NextResponse('Access denied', { status: 403 });
+    }
+  }
+
+  // Validate request method
+  const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'];
+  if (!allowedMethods.includes(request.method)) {
+    return new NextResponse('Method not allowed', { status: 405 });
+  }
+
+  // Block requests with suspicious headers (only in production)
+  if (isProduction) {
+    const suspiciousHeaders = [
+      'x-forwarded-host',
+      'x-forwarded-server',
+      'x-forwarded-uri'
+    ];
+
+    for (const header of suspiciousHeaders) {
+      if (request.headers.get(header)) {
+        return new NextResponse('Invalid request', { status: 400 });
+      }
+    }
+  }
+
+  // Validate content type for POST requests (only in production)
+  if (isProduction && request.method === 'POST') {
+    const contentType = request.headers.get('content-type');
+    if (contentType && !contentType.includes('application/json') && !contentType.includes('multipart/form-data')) {
+      return new NextResponse('Invalid content type', { status: 400 });
+    }
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.png (favicon file)
+     * - public folder files
+     */
+    '/((?!_next/static|_next/image|favicon.png|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+};
