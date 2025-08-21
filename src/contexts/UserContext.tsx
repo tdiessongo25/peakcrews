@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { SessionManager, LoginSecurity, PasswordSecurity, ActivityMonitor } from '@/lib/auth-security';
 import { sanitizeEmail, sanitizeString } from '@/lib/security';
+import { Trade } from '@/lib/types';
 
 // User types
 interface User {
@@ -31,6 +32,7 @@ interface WorkerProfile {
   phone: string;
   rating: number;
   completedJobs: number;
+  profileStatus?: "pending" | "approved" | "rejected";
 }
 
 interface HirerProfile {

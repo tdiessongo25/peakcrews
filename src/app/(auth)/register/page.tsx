@@ -13,7 +13,8 @@ import type { UserRole } from "@/lib/types";
 import { Loader2, Eye, EyeOff, Sparkles, ArrowRight, Shield, Clock, Star, CheckCircle } from "lucide-react";
 
 function RegisterForm() {
-  const { signUp, isLoading, error, clearError } = useUser();
+  const { login, isLoading } = useUser();
+  const [error, setError] = useState("");
   const searchParams = useSearchParams();
   
   const [name, setName] = useState("");
@@ -33,14 +34,18 @@ function RegisterForm() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
+    setError("");
     
     if (password !== confirmPassword) {
       // Handle password mismatch error
       return;
     }
     
-    await signUp(email, password, name, roleToRegister);
+    try {
+      await login(roleToRegister);
+    } catch (err) {
+      setError("Registration failed. Please try again.");
+    }
   };
 
   const isFormValid = name.trim() && email.trim() && password.length >= 8 && password === confirmPassword;

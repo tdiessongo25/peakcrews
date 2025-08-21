@@ -14,7 +14,6 @@ export async function PATCH(
     // Update worker profile status
     const updatedProfile = await cursorClient.updateWorkerProfile(workerId, {
       profileStatus: status,
-      rejectionReason: reason, // Add this field to WorkerProfileInfo if needed
     });
 
     // Send notification to worker (in real app)

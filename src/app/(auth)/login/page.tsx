@@ -12,16 +12,21 @@ import type { UserRole } from "@/lib/types";
 import { Loader2, Eye, EyeOff, Sparkles, ArrowRight, Shield, Clock, Star } from "lucide-react";
 
 export default function LoginPage() {
-  const { signIn, isLoading, error, clearError } = useUser();
+  const { login, isLoading } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [roleToLogin, setRoleToLogin] = useState<UserRole>("worker");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
-    await signIn(email, password);
+    setError("");
+    try {
+      await login(roleToLogin);
+    } catch (err) {
+      setError("Login failed. Please try again.");
+    }
   };
 
   return (

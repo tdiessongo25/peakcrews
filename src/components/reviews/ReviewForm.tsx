@@ -229,10 +229,11 @@ export function ReviewForm({ jobId, revieweeId, jobTitle, onSuccess, onCancel }:
               <h4 className="font-medium">Review Preview</h4>
               <div className="flex items-center gap-2">
                 {renderStars(rating)}
-                <span className="text-sm text-muted-foreground">
-                  {getCategoryIcon(category) && (
-                    <getCategoryIcon(category) className="h-4 w-4" />
-                  )}
+                <span className="text-sm text-muted-foreground flex items-center gap-1">
+                  {(() => {
+                    const Icon = getCategoryIcon(category);
+                    return Icon ? <Icon className="h-4 w-4" /> : null;
+                  })()}
                   {CATEGORIES.find(cat => cat.value === category)?.label}
                 </span>
               </div>

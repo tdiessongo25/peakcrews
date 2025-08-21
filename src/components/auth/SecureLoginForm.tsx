@@ -215,7 +215,7 @@ export function SecureLoginForm({ onSuccess, onCancel, defaultRole = 'worker' }:
           )}
 
           {remainingAttempts !== null && remainingAttempts < 5 && !lockoutTime && (
-            <Alert variant="warning">
+            <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
                 {remainingAttempts} login attempts remaining
@@ -236,8 +236,7 @@ export function SecureLoginForm({ onSuccess, onCancel, defaultRole = 'worker' }:
           <Button
             type="submit"
             className="w-full"
-            disabled={!isFormValid}
-            loading={isLoading}
+            disabled={!isFormValid || isLoading}
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </Button>

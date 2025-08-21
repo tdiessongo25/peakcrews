@@ -165,7 +165,7 @@ export function ConsentManager({ onConsentChange, showPrivacyRequests = true }: 
         toast({
           title: `Consent ${granted ? 'Granted' : 'Denied'}`,
           description: `${option.title} consent has been ${granted ? 'granted' : 'denied'}`,
-          variant: granted ? 'default' : 'secondary'
+          variant: granted ? 'default' : 'destructive'
         });
       }
     } catch (error) {
@@ -195,7 +195,7 @@ export function ConsentManager({ onConsentChange, showPrivacyRequests = true }: 
       toast({
         title: 'Consent Withdrawn',
         description: `${option?.title} consent has been withdrawn`,
-        variant: 'secondary'
+        variant: 'destructive'
       });
     } catch (error) {
       console.error('Failed to withdraw consent:', error);

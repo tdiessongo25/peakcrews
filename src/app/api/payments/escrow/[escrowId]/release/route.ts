@@ -46,7 +46,7 @@ export async function POST(
         userId: userId, // Worker
         title: 'Escrow Released',
         message: `Escrow funds of $${(escrowAmount / 100).toFixed(2)} have been released to your account.`,
-        type: 'escrow_released',
+        type: 'success',
         isRead: false,
         actionUrl: `/payments`,
       });
@@ -55,7 +55,7 @@ export async function POST(
         userId: 'hirer_id', // Hirer
         title: 'Escrow Released',
         message: `Escrow funds of $${(escrowAmount / 100).toFixed(2)} have been released to the worker.`,
-        type: 'escrow_released',
+        type: 'success',
         isRead: false,
         actionUrl: `/payments`,
       });

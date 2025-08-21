@@ -35,13 +35,13 @@ const MOCK_JOBS: Job[] = [
     id: '1',
     hirerId: 'hirer1',
     hirerName: 'John Smith',
-    trade: 'Electricians',
+    trade: 'Electrician',
     title: 'Emergency Electrical Repair Needed',
     description: 'Need an experienced electrician to fix a circuit breaker issue. The power keeps tripping and we need it resolved ASAP.',
     location: 'Brooklyn, NY',
     address: '123 Main St, Brooklyn, NY 11201',
     jobType: 'ASAP',
-    scheduledDateTime: null,
+    scheduledDateTime: undefined,
     duration: '2-3 hours',
     rate: 150,
     status: 'open',
@@ -51,7 +51,7 @@ const MOCK_JOBS: Job[] = [
     id: '2',
     hirerId: 'hirer2',
     hirerName: 'Sarah Johnson',
-    trade: 'Plumbers',
+    trade: 'Plumber',
     title: 'Kitchen Sink Installation',
     description: 'Need a plumber to install a new kitchen sink and connect the plumbing. All materials provided.',
     location: 'Manhattan, NY',
@@ -67,7 +67,7 @@ const MOCK_JOBS: Job[] = [
     id: '3',
     hirerId: 'hirer3',
     hirerName: 'Mike Davis',
-    trade: 'Carpenters',
+    trade: 'Carpenter',
     title: 'Custom Bookshelf Construction',
     description: 'Looking for a skilled carpenter to build a custom bookshelf. Need it to fit specific dimensions.',
     location: 'Queens, NY',
@@ -510,10 +510,13 @@ class CursorClient {
   async getWorkerProfile(userId: string): Promise<WorkerProfileInfo> {
     return {
       userId,
+      trade: 'Electrician',
       skills: ['Electrical', 'Plumbing'],
       experience: '5 years',
-      certifications: ['Licensed Electrician'],
-      availability: 'Weekdays',
+      certifications: ['Licensed Electrician', 'OSHA Safety'],
+      availability: true,
+      location: 'Denver, CO',
+      bio: 'Experienced electrician with 5 years in commercial and residential work.',
       hourlyRate: 50,
       resumeUrl: 'https://example.com/uploads/resume_user1.pdf',
       profileStatus: 'pending',
@@ -523,10 +526,13 @@ class CursorClient {
   async updateWorkerProfile(userId: string, profile: Partial<WorkerProfileInfo>): Promise<WorkerProfileInfo> {
     return {
       userId,
+      trade: 'Electrician',
       skills: ['Electrical', 'Plumbing'],
       experience: '5 years',
-      certifications: ['Licensed Electrician'],
-      availability: 'Weekdays',
+      certifications: ['Licensed Electrician', 'OSHA Safety'],
+      availability: true,
+      location: 'Denver, CO',
+      bio: 'Experienced electrician with 5 years in commercial and residential work.',
       hourlyRate: 50,
       resumeUrl: 'https://example.com/uploads/resume_user1.pdf',
       profileStatus: 'pending',
@@ -536,21 +542,17 @@ class CursorClient {
 
   async getHirerProfile(userId: string): Promise<HirerProfileInfo> {
     return {
-      userId,
       companyName: 'Test Company',
-      industry: 'Construction',
-      projectTypes: ['Residential', 'Commercial'],
-      averageProjectSize: 'Medium',
+      companyInfo: 'A leading construction company',
+      contactNumber: '555-123-4567',
     };
   }
 
   async updateHirerProfile(userId: string, profile: Partial<HirerProfileInfo>): Promise<HirerProfileInfo> {
     return {
-      userId,
       companyName: 'Test Company',
-      industry: 'Construction',
-      projectTypes: ['Residential', 'Commercial'],
-      averageProjectSize: 'Medium',
+      companyInfo: 'A leading construction company',
+      contactNumber: '555-123-4567',
       ...profile,
     };
   }

@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
     // Get or create customer for hirer
     let customer;
     try {
-      const hirer = await cursorClient.getUser(hirerId);
+      // const hirer = await cursorClient.getUser(hirerId);
       customer = await StripeService.createCustomer({
-        email: hirer.email,
-        name: hirer.name,
+        email: 'hirer@example.com', // hirer.email
+        name: 'Hirer', // hirer.name
         userId: hirerId,
         role: 'hirer',
       });

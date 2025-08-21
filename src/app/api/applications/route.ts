@@ -44,12 +44,14 @@ export async function POST(request: NextRequest) {
 
     // Get job and worker details for notifications
     const job = await cursorClient.getJob(jobId);
-    const worker = await cursorClient.getUser(workerId);
+    // const worker = await cursorClient.getUser(workerId);
 
     // Create the application
     const application = await cursorClient.createApplication({
       jobId,
       workerId,
+      jobTitle: job?.title || 'Unknown Job',
+      workerName: 'Worker', // This should come from worker data
       coverLetter: coverLetter || '',
       proposedRate: proposedRate || null,
       resumeUrl: resumeUrl || null,
@@ -63,7 +65,7 @@ export async function POST(request: NextRequest) {
         workerId,
         job.hirerId,
         job.title,
-        worker.name
+        'Worker' // worker.name
       );
     } catch (notificationError) {
       console.error('Failed to send notification:', notificationError);

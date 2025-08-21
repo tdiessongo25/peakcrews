@@ -10,17 +10,18 @@ export const MOCK_USER_ID = "user-123";
 export const MOCK_WORKER_ID = "worker-abc";
 export const MOCK_HIRER_ID = "hirer-xyz";
 
-export const MOCK_WORKER_PROFILE: WorkerProfileInfo = {
-  trade: "Electrician",
-  experience: "10+ years",
-  certifications: [
-    { name: "Master Electrician License", verified: true },
-    { name: "OSHA 30-Hour Certification", verified: false }
-  ],
-  availability: true,
-  location: "New York, NY",
-  bio: "Highly skilled and certified electrician with extensive experience in residential and commercial projects. Committed to safety and quality workmanship."
-};
+// export const MOCK_WORKER_PROFILE: WorkerProfileInfo = {
+//   userId: "worker-1",
+//   skills: ["Electrical Installation", "Troubleshooting", "Safety Compliance"],
+//   experience: "10+ years",
+//   certifications: [
+//     { name: "Master Electrician License", verified: true },
+//     { name: "OSHA 30-Hour Certification", verified: false }
+//   ],
+//   availability: "Full-time",
+//   hourlyRate: 45,
+//   profileStatus: "approved"
+// };
 
 export const MOCK_HIRER_PROFILE: HirerProfileInfo = {
   companyName: "BuildIt Right Inc.",
@@ -40,7 +41,7 @@ export const MOCK_JOBS: Job[] = [
     description: "Need a certified electrician to repair several faulty outlets in a residential property. Must have own tools.",
     location: "Brooklyn, NY",
     address: "123 Main St, Brooklyn, NY 11201",
-    jobType: "Urgent (ASAP)",
+    jobType: "ASAP",
     duration: "2-3 hours",
     rate: 75, // Assuming per hour for now, can be flat
     postedAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
@@ -113,7 +114,10 @@ export const MOCK_REVIEWS: Review[] = [
     revieweeId: MOCK_WORKER_ID,
     reviewerRole: "hirer",
     rating: 5,
+    title: "Excellent Work",
     comment: "Excellent work, very professional and efficient. Highly recommend!",
+    category: "overall",
+    isPublic: true,
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
   },
   {
@@ -123,7 +127,10 @@ export const MOCK_REVIEWS: Review[] = [
     revieweeId: MOCK_HIRER_ID,
     reviewerRole: "worker",
     rating: 4,
+    title: "Good Experience",
     comment: "Clear instructions and prompt payment. Good experience overall.",
+    category: "overall",
+    isPublic: true,
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 1).toISOString(),
   }
 ];
@@ -132,24 +139,29 @@ export const MOCK_NOTIFICATIONS: Notification[] = [
   {
     id: "notif-1",
     userId: MOCK_WORKER_ID,
+    title: "Application Viewed",
     message: "Your application for 'Urgent: Outlet Repair Needed' has been viewed by BuildIt Right Inc.",
-    link: "/applications",
+    type: "application_status",
     isRead: false,
     createdAt: new Date(Date.now() - 1000 * 60 * 10).toISOString(),
+    actionUrl: "/applications",
   },
   {
     id: "notif-2",
     userId: MOCK_HIRER_ID,
+    title: "New Applicant",
     message: "You have a new applicant for 'Interior Painting for Apartment'.",
-    link: "/my-jobs/job-3/applicants",
+    type: "application_received",
     isRead: false,
     createdAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
+    actionUrl: "/my-jobs/job-3/applicants",
   },
   {
     id: "notif-3",
     userId: MOCK_WORKER_ID,
+    title: "Job Reminder",
     message: "Reminder: Job 'Interior Painting for Apartment' starts tomorrow!",
-    link: "/applications",
+    type: "reminder",
     isRead: true,
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 23).toISOString(),
   }

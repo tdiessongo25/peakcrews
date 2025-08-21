@@ -199,7 +199,7 @@ export class DataEncryption {
     
     const hashBuffer = await crypto.subtle.exportKey('raw', key);
     const hash = this.arrayBufferToBase64(hashBuffer);
-    const saltString = this.arrayBufferToBase64(passwordSalt.buffer);
+    const saltString = this.arrayBufferToBase64(passwordSalt.buffer as ArrayBuffer);
 
     return { hash, salt: saltString };
   }

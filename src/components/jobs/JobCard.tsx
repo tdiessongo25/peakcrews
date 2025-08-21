@@ -172,7 +172,7 @@ export default function JobCard({
              </Badge>
              {showApplicationCount && applicationCount > 0 && (
                <Badge variant="outline" className="text-xs text-blue-600 border-blue-300">
-                 <Users className="mr-1 h-3 w-3" />
+                                   <User className="mr-1 h-3 w-3" />
                  {applicationCount} application{applicationCount !== 1 ? 's' : ''}
                </Badge>
              )}

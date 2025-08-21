@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Performance optimization service
 export class PerformanceService {
   private static instance: PerformanceService;
@@ -104,10 +106,13 @@ export class PerformanceService {
   // Measure custom performance
   static measure(name: string, fn: () => void): void {
     if (typeof window !== 'undefined' && 'performance' in window) {
-      const start = performance.now();
+      const startMark = `${name}-start`;
+      const endMark = `${name}-end`;
+      
+      performance.mark(startMark);
       fn();
-      const end = performance.now();
-      performance.measure(name, undefined, undefined, { startTime: start, duration: end - start });
+      performance.mark(endMark);
+      performance.measure(name, startMark, endMark);
     }
   }
 

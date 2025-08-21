@@ -477,8 +477,9 @@ export class PrivacyComplianceManager {
 
   private static generateRecommendations(activity: DataProcessingActivity): string[] {
     const recommendations: string[] = [];
+    const riskLevel = this.assessRiskLevel(activity);
 
-    if (activity.riskLevel === 'high') {
+    if (riskLevel === 'high') {
       recommendations.push('Conduct detailed privacy impact assessment');
       recommendations.push('Implement additional technical safeguards');
       recommendations.push('Obtain explicit consent for all processing activities');

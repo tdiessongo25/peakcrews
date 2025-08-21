@@ -155,7 +155,7 @@ export function ApplicationForm({ job, onSuccess, onCancel }: ApplicationFormPro
 
           <div>
             <ResumeUpload
-              currentResumeUrl={null}
+              currentResumeUrl={undefined}
               onUpload={handleResumeUpload}
               onRemove={handleResumeRemove}
               required={true}

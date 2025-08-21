@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
         userId: revieweeId,
         title: 'New Review Received',
         message: `You received a ${rating}-star review: "${title}"`,
-        type: 'review_received',
+        type: 'success',
         isRead: false,
         actionUrl: `/reviews?userId=${revieweeId}`,
       });

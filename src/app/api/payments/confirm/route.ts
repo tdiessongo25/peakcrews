@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
           userId: paymentIntent.workerId,
           title: 'Payment Received',
           message: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} has been received for job: ${paymentIntent.description}`,
-          type: 'payment_received',
+          type: 'success',
           isRead: false,
           actionUrl: `/payments`,
         });
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
           userId: paymentIntent.hirerId,
           title: 'Payment Completed',
           message: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} has been completed for job: ${paymentIntent.description}`,
-          type: 'payment_completed',
+          type: 'success',
           isRead: false,
           actionUrl: `/payments`,
         });

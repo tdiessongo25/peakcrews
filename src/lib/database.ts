@@ -489,13 +489,13 @@ export class DatabaseManager {
     
     switch (operation) {
       case 'SELECT':
-        return await this.simulateSelect(table, params);
+        return await this.simulateSelect(table || 'unknown', params || '');
       case 'INSERT':
-        return await this.simulateInsert(table, params);
+        return await this.simulateInsert(table || 'unknown', params || '');
       case 'UPDATE':
-        return await this.simulateUpdate(table, params);
+        return await this.simulateUpdate(table || 'unknown', params || '');
       case 'DELETE':
-        return await this.simulateDelete(table, params);
+        return await this.simulateDelete(table || 'unknown', params || '');
       default:
         return { success: true, message: 'Query executed successfully' };
     }

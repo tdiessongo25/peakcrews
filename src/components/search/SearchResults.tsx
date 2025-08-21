@@ -75,12 +75,12 @@ export function SearchResults({
 
   const shareItem = (item: JobSearchResult | WorkerSearchResult) => {
     const url = window.location.href;
-    const text = 'job' in item ? item.title : `${item.name} - ${item.title}`;
+    const text = 'job' in item ? item.title : `${(item as any).name} - ${item.title}`;
     
     if (navigator.share) {
       navigator.share({
         title: text,
-        text: 'job' in item ? item.description : item.bio,
+        text: 'job' in item ? (item as any).description : (item as any).bio,
         url,
       });
     } else {

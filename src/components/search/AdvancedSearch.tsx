@@ -141,10 +141,10 @@ export function AdvancedSearch({
       location: location || undefined,
       priceRange: priceRange.min > 0 || priceRange.max < 1000 ? priceRange : undefined,
       rating: rating > 0 ? rating : undefined,
-      availability: availability !== 'any' ? availability : undefined,
-      experience: experience !== 'any' ? experience : undefined,
-      jobType: jobType !== 'any' ? jobType : undefined,
-      datePosted: datePosted !== 'any' ? datePosted : undefined,
+      availability: availability !== 'any' ? availability as "immediate" | "this_week" | "this_month" | "flexible" : undefined,
+      experience: experience !== 'any' ? experience as "entry" | "intermediate" | "expert" : undefined,
+      jobType: jobType !== 'any' ? jobType as "full_time" | "part_time" | "contract" | "project" : undefined,
+      datePosted: datePosted !== 'any' ? datePosted as "this_week" | "this_month" | "today" | "all" : undefined,
       sortBy: sortBy,
       skills: selectedSkills.length > 0 ? selectedSkills : undefined,
     };
@@ -441,7 +441,7 @@ export function AdvancedSearch({
               {/* Sort By */}
               <div className="space-y-2">
                 <Label>Sort By</Label>
-                <Select value={sortBy} onValueChange={setSortBy}>
+                <Select value={sortBy} onValueChange={(value) => setSortBy(value as "rating" | "relevance" | "date" | "price_high" | "price_low" | "distance")}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>

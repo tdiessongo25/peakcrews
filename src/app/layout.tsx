@@ -18,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32 16x16" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.png?v=3" type="image/png" sizes="32x32 16x16" />
+        <link rel="apple-touch-icon" href="/favicon.png?v=3" />
+        <link rel="shortcut icon" href="/favicon.png?v=3" type="image/png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=3" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />

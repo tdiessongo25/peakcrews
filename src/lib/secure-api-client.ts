@@ -107,7 +107,7 @@ export class SecureApiClient {
       try {
         // Prepare request data
         let requestData = config.data;
-        let requestHeaders = {
+        let requestHeaders: Record<string, string> = {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           ...config.headers
@@ -299,7 +299,7 @@ export class SecureDataTransmission {
 
   static async decryptFromTransmission(encryptedData: string): Promise<any> {
     try {
-      const transmissionData = await DataEncryption.decryptObject(encryptedData);
+      const transmissionData = await DataEncryption.decryptObject(encryptedData) as any;
       
       // Verify integrity
       const decryptedData = await DataEncryption.decryptObject(transmissionData.data);

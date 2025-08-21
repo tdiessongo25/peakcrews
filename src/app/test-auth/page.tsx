@@ -13,11 +13,8 @@ export default function TestAuthPage() {
     currentUser, 
     isAuthenticated, 
     isLoading, 
-    error, 
-    signIn, 
-    signUp, 
-    signOut, 
-    clearError 
+    login, 
+    logout 
   } = useUser();
   
   const [email, setEmail] = useState("");
@@ -27,12 +24,11 @@ export default function TestAuthPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
     
-    if (isSignUp) {
-      await signUp(email, password, name, 'worker');
-    } else {
-      await signIn(email, password);
+    try {
+      await login('worker');
+    } catch (err) {
+      console.error('Login failed:', err);
     }
   };
 
@@ -60,11 +56,7 @@ export default function TestAuthPage() {
                     <div>Role: {currentUser.role}</div>
                   </div>
                 )}
-                {error && (
-                  <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-600">
-                    Error: {error}
-                  </div>
-                )}
+                {/* Error display removed for now */}
               </div>
             </div>
 
@@ -152,7 +144,7 @@ export default function TestAuthPage() {
             {/* Sign Out Button */}
             {isAuthenticated && (
               <Button 
-                onClick={signOut}
+                onClick={logout}
                 disabled={isLoading}
                 variant="destructive"
                 className="w-full"

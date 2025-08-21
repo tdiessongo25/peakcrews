@@ -59,7 +59,7 @@ export default function WorkerProfileComponent({ user, profile: initialProfile, 
       ...prev,
       skills: parsedData.skills,
       experience: parsedData.experience,
-      certifications: parsedData.certifications.map(cert => ({ name: cert, verified: false })),
+      certifications: parsedData.certifications,
     }));
     
     toast({
@@ -84,13 +84,13 @@ export default function WorkerProfileComponent({ user, profile: initialProfile, 
   const handleAddCertification = () => {
     setProfile(prev => ({
       ...prev,
-      certifications: [...prev.certifications, { name: "", verified: false }]
+      certifications: [...prev.certifications, ""]
     }));
   };
 
   const handleCertificationChange = (index: number, value: string) => {
     const newCerts = [...profile.certifications];
-    newCerts[index].name = value;
+    newCerts[index] = value;
     setProfile(prev => ({ ...prev, certifications: newCerts }));
   };
   
@@ -153,9 +153,9 @@ export default function WorkerProfileComponent({ user, profile: initialProfile, 
                     <Badge variant="secondary">75%</Badge> {/* Placeholder */}
                 </div>
                 <div className="flex items-center justify-between p-3 bg-muted/50 rounded-md">
-                    <span className="text-sm font-medium">Certificates Verified</span>
-                    <Badge variant={profile.certifications.some(c => c.verified) ? "default" : "outline"} className={profile.certifications.some(c => c.verified) ? "bg-accent text-accent-foreground" : ""}>
-                        {profile.certifications.filter(c => c.verified).length} / {profile.certifications.length}
+                    <span className="text-sm font-medium">Certificates Listed</span>
+                    <Badge variant="outline">
+                        {profile.certifications.length} certificates
                     </Badge>
                 </div>
             </CardContent>
@@ -201,14 +201,14 @@ export default function WorkerProfileComponent({ user, profile: initialProfile, 
                 {profile.certifications.map((cert, index) => (
                   <div key={index} className="flex items-center gap-2 mb-2 p-2 border rounded-md bg-muted/20">
                     <Input 
-                      value={cert.name} 
+                      value={cert} 
                       onChange={(e) => handleCertificationChange(index, e.target.value)} 
                       placeholder="e.g., Master Electrician License"
                       className="flex-grow"
                     />
-                     <Badge variant={cert.verified ? "default" : "outline"} className={cert.verified ? "bg-accent text-accent-foreground whitespace-nowrap" : "whitespace-nowrap"}>
-                        {cert.verified ? <ShieldCheck size={14} className="mr-1"/> : <ShieldAlert size={14} className="mr-1"/>}
-                        {cert.verified ? "Verified" : "Pending"}
+                     <Badge variant="outline" className="whitespace-nowrap">
+                        <ShieldAlert size={14} className="mr-1"/>
+                        Pending
                     </Badge>
                     {/* <Button variant="outline" size="icon" className="h-8 w-8" type="button"><UploadCloud size={16} /></Button> */}
                     <Button variant="ghost" size="icon" type="button" onClick={() => handleRemoveCertification(index)} className="text-destructive hover:text-destructive/80 h-8 w-8">
@@ -259,10 +259,10 @@ export default function WorkerProfileComponent({ user, profile: initialProfile, 
                   <ul className="space-y-2">
                     {profile.certifications.map((cert, index) => (
                       <li key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-md">
-                        <span>{cert.name}</span>
-                        <Badge variant={cert.verified ? "default" : "outline"} className={cert.verified ? "bg-accent text-accent-foreground" : ""}>
-                          {cert.verified ? <ShieldCheck size={14} className="mr-1"/> : <ShieldAlert size={14} className="mr-1"/>}
-                          {cert.verified ? "Verified" : "Pending Admin Review"}
+                        <span>{cert}</span>
+                        <Badge variant="outline">
+                          <ShieldAlert size={14} className="mr-1"/>
+                          Pending Admin Review
                         </Badge>
                       </li>
                     ))}

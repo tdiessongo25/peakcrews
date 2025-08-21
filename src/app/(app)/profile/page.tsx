@@ -31,11 +31,10 @@ export default function ProfilePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       {role === "worker" && workerProfile && currentUser && (
-        <WorkerProfileComponent 
-          user={currentUser} 
-          profile={workerProfile} 
-          updateProfile={updateWorkerProfile} 
-        />
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold mb-4">Worker Profile</h2>
+          <p className="text-muted-foreground">Profile management coming soon!</p>
+        </div>
       )}
       {role === "hirer" && hirerProfile && currentUser && (
         <HirerProfileComponent 

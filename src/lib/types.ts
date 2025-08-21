@@ -1,7 +1,7 @@
 
 export type Trade = "Electrician" | "Carpenter" | "Painter" | "Concrete Laborer" | "General Laborer" | "Plumber";
 
-export type UserRole = "guest" | "worker" | "hirer" | "admin";
+export type UserRole = "worker" | "hirer" | "admin";
 
 export interface User {
   id: string;
@@ -9,15 +9,6 @@ export interface User {
   email: string;
   role: UserRole;
   profileImageUrl?: string;
-}
-
-export interface WorkerProfileInfo {
-  trade: Trade;
-  experience: string;
-  certifications: { name: string; fileUrl?: string; verified: boolean }[];
-  availability: boolean;
-  location?: string;
-  bio?: string;
 }
 
 export interface HirerProfileInfo {
@@ -62,10 +53,13 @@ export interface JobApplication {
 
 export interface WorkerProfileInfo {
   userId: string;
+  trade: Trade;
   skills: string[];
   experience: string;
   certifications: string[];
-  availability: string;
+  availability: boolean;
+  location?: string;
+  bio?: string;
   hourlyRate: number;
   resumeUrl?: string; // URL to uploaded resume
   profileStatus: "pending" | "approved" | "rejected"; // For profile approval
@@ -73,12 +67,15 @@ export interface WorkerProfileInfo {
 
 export interface Review {
   id: string;
-  jobId:string;
+  jobId: string;
   reviewerId: string; 
   revieweeId: string; 
   reviewerRole: UserRole;
   rating: 1 | 2 | 3 | 4 | 5;
+  title: string;
   comment: string;
+  category: 'communication' | 'quality' | 'timeliness' | 'professionalism' | 'overall';
+  isPublic: boolean;
   createdAt: string; 
 }
 

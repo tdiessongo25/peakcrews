@@ -26,7 +26,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { TRADES_LIST, JOB_TYPES_FOR_AI } from "@/lib/constants";
 import type { JobAdGeneratorInput, JobAdGeneratorOutput, Trade } from "@/lib/types";
-import { generateJobAd } from "@/ai/flows/job-ad-generator";
+// import { generateJobAd } from "@/ai/flows/job-ad-generator";
 import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@/contexts/UserContext";
 import { useRouter } from "next/navigation";
@@ -100,11 +100,11 @@ export function JobPostingForm() {
         return;
       }
 
-      const result: JobAdGeneratorOutput = await generateJobAd(aiInputs);
-      form.setValue("description", result.jobAdText);
-      if (!form.getValues("title")) { // Optionally pre-fill title if empty
-        form.setValue("title", `${aiInputs.trade} Needed in ${aiInputs.location}`);
-      }
+      // const result: JobAdGeneratorOutput = await generateJobAd(aiInputs);
+      // form.setValue("description", result.jobAdText);
+      // if (!form.getValues("title")) { // Optionally pre-fill title if empty
+      //   form.setValue("title", `${aiInputs.trade} Needed in ${aiInputs.location}`);
+      // }
       toast({
         title: "AI Job Ad Generated!",
         description: "The job description has been filled. You can edit it further.",
@@ -153,7 +153,7 @@ export function JobPostingForm() {
         description: data.description,
         location: data.aiLocation,
         address: data.address,
-        jobType: data.jobTimePreference === "ASAP" ? "ASAP" : "Scheduled",
+        jobType: data.jobTimePreference === "ASAP" ? "ASAP" : "Scheduled" as "ASAP" | "Scheduled" | "Urgent" | "Short-term project" | "Full-time temporary",
         scheduledDateTime: data.scheduledDateTime?.toISOString(),
         duration: data.duration,
         rate: data.rate,
