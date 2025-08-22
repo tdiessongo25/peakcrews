@@ -576,3 +576,4 @@ export default function Home() {
     </div>
   );
 }
+// Vercel deployment fix - Fri Aug 22 12:12:27 MDT 2025
