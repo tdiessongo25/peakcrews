@@ -83,7 +83,7 @@ class KeyManager {
         name: 'AES-GCM',
         length: ENCRYPTION_CONFIG.KEY_LENGTH
       },
-      true,
+      false,
       ['encrypt', 'decrypt']
     );
   }
