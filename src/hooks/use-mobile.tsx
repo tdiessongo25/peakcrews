@@ -53,6 +53,8 @@ export function useMobile(): MobileInfo {
 
   useEffect(() => {
     const updateMobileInfo = () => {
+      if (typeof window === 'undefined') return;
+      
       const userAgent = navigator.userAgent;
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
@@ -73,17 +75,17 @@ export function useMobile(): MobileInfo {
       const orientation = screenWidth > screenHeight ? 'landscape' : 'portrait';
       
       // Touch device detection
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
       
       // PWA detection
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-                          (window.navigator as any).standalone === true;
+      const isStandalone = typeof window !== 'undefined' && (window.matchMedia('(display-mode: standalone)').matches || 
+                          (window.navigator as any).standalone === true);
       
       // Feature detection
       const hasGeolocation = 'geolocation' in navigator;
       const hasCamera = 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices;
       const hasMicrophone = hasCamera; // Usually available with camera
-      const hasNotifications = 'Notification' in window;
+      const hasNotifications = typeof window !== 'undefined' && 'Notification' in window;
       
       // Network information
       const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
@@ -121,10 +123,10 @@ export function useMobile(): MobileInfo {
     updateMobileInfo();
 
     // Listen for resize events
-    window.addEventListener('resize', updateMobileInfo);
-    
-    // Listen for orientation changes
-    window.addEventListener('orientationchange', updateMobileInfo);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateMobileInfo);
+      window.addEventListener('orientationchange', updateMobileInfo);
+    }
     
     // Listen for network changes
     if ('connection' in navigator) {
@@ -132,8 +134,10 @@ export function useMobile(): MobileInfo {
     }
 
     return () => {
-      window.removeEventListener('resize', updateMobileInfo);
-      window.removeEventListener('orientationchange', updateMobileInfo);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', updateMobileInfo);
+        window.removeEventListener('orientationchange', updateMobileInfo);
+      }
       if ('connection' in navigator) {
         (navigator as any).connection.removeEventListener('change', updateMobileInfo);
       }
