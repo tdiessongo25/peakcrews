@@ -92,7 +92,7 @@ export function middleware(request: NextRequest) {
   // Block requests with suspicious headers (only in production)
   // Note: x-forwarded-* headers are commonly added by hosting providers like Vercel
   if (isProduction) {
-    const suspiciousHeaders = [
+    const suspiciousHeaders: string[] = [
       // Removed x-forwarded-* headers as they're legitimate from hosting providers
     ];
 
