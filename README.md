@@ -197,3 +197,4 @@ For support and questions:
 ## Migration from Firebase
 
 This project has been migrated from Firebase to Cursor's backend infrastructure. See [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for detailed information about the migration process and setup instructions.
+# Trigger new deployment
