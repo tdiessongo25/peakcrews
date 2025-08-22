@@ -41,9 +41,9 @@ export default function Header() {
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
       {!logoError ? (
-        <div className="relative w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40">
+        <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
           <img
-            src="/logo-160.png"
+            src="/logo-64.png"
             alt="PeakCrews"
             className="w-full h-full object-contain"
             onError={(e) => {
@@ -56,8 +56,8 @@ export default function Header() {
           />
         </div>
       ) : (
-        <div className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 bg-primary rounded-lg flex items-center justify-center">
-          <span className="text-primary-foreground font-bold text-5xl md:text-6xl lg:text-7xl">P</span>
+        <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-primary rounded-lg flex items-center justify-center">
+          <span className="text-primary-foreground font-bold text-xl md:text-2xl lg:text-3xl">P</span>
         </div>
       )}
     </div>
