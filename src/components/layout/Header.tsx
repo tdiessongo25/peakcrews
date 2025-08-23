@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { NotificationBadge } from '@/components/ui/notification-badge';
 import { useState } from 'react';
-import logoImage from '@/assets/logo48.png';
+import logoImage from '@/assets/logo160.png'; // Higher resolution logo
 
 export default function Header() {
   const { role, currentUser, logout, isLoading, isAuthenticated } = useUser();
