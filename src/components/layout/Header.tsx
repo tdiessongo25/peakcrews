@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { NotificationBadge } from '@/components/ui/notification-badge';
 import { useState } from 'react';
-import logoImage from '@/assets/logo160.png'; // Higher resolution logo
+import logoImage from '@/assets/logo256.png'; // Highest resolution logo for crisp quality
 
 export default function Header() {
   const { role, currentUser, logout, isLoading, isAuthenticated } = useUser();
@@ -46,6 +46,10 @@ export default function Header() {
           alt="PeakCrews"
           className="w-full h-full object-contain"
           priority
+          style={{
+            imageRendering: 'crisp-edges',
+            imageRendering: '-webkit-optimize-contrast'
+          }}
         />
       </div>
     </div>
