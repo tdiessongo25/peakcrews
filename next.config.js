@@ -147,7 +147,7 @@ const nextConfig = {
       },
     ],
     formats: ['image/webp', 'image/avif'],
-    unoptimized: true, // Disable optimization for local images to fix logo loading
+    unoptimized: false, // Enable optimization but exclude public folder
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
@@ -185,9 +185,10 @@ const nextConfig = {
       };
     }
 
-    // Optimize images
+    // Optimize images (disabled for public folder files)
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|svg)$/i,
+      exclude: /public/, // Exclude public folder from optimization
       use: [
         {
           loader: 'image-webpack-loader',
