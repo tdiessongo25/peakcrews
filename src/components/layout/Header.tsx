@@ -47,8 +47,7 @@ export default function Header() {
           className="w-full h-full object-contain"
           priority
           style={{
-            imageRendering: 'crisp-edges',
-            imageRendering: '-webkit-optimize-contrast'
+            imageRendering: 'crisp-edges'
           }}
         />
       </div>
