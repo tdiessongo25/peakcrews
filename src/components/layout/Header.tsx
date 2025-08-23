@@ -37,60 +37,45 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Logo component with proper aspect ratio and error handling
+  // Logo component with embedded SVG - guaranteed to work
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
       <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
-        {!logoError ? (
-          <img
-            src="/logo56.png"
-            alt="PeakCrews"
-            className="w-full h-full object-contain"
-            onError={(e) => {
-              console.error('Logo failed to load:', e);
-              setLogoError(true);
-            }}
-            onLoad={() => {
-              console.log('Logo loaded successfully');
-              setLogoError(false);
-            }}
-            style={{ display: 'block' }}
+        <svg
+          viewBox="0 0 64 64"
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#f97316', stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
+            </linearGradient>
+          </defs>
+          {/* Mountain shapes */}
+          <path
+            d="M8 48 L20 32 L32 40 L44 24 L56 36 L56 48 Z"
+            fill="url(#logoGradient)"
+            stroke="#1f2937"
+            strokeWidth="1"
           />
-        ) : (
-          // Fallback SVG logo
-          <svg
-            viewBox="0 0 64 64"
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#f97316', stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
-              </linearGradient>
-            </defs>
-            {/* Mountain shapes */}
-            <path
-              d="M20 40 L32 20 L44 40 L32 35 Z"
-              fill="url(#logoGradient)"
-            />
-            <path
-              d="M15 45 L32 25 L49 45 L32 40 Z"
-              fill="url(#logoGradient)"
-              opacity="0.8"
-            />
-            {/* Text */}
-            <text
-              x="32"
-              y="55"
-              textAnchor="middle"
-              className="text-xs font-bold fill-gray-800"
-              style={{ fontSize: '8px', fontWeight: 'bold' }}
-            >
-              PeakCrews
-            </text>
-          </svg>
-        )}
+          {/* Peak highlight */}
+          <path
+            d="M44 24 L48 20 L52 24 L48 28 Z"
+            fill="#ffffff"
+            opacity="0.8"
+          />
+          {/* Text background */}
+          <rect x="4" y="50" width="56" height="12" fill="#1f2937" rx="2" />
+          {/* Text */}
+          <text x="32" y="60" textAnchor="middle" fill="#ffffff" fontSize="8" fontWeight="bold" fontFamily="Arial, sans-serif">
+            PeakCrews
+          </text>
+        </svg>
+      </div>
+      <div className="flex flex-col">
+        <span className="text-xl md:text-2xl font-bold text-primary">PeakCrews</span>
+        <span className="text-xs text-muted-foreground hidden md:block">Skilled Trades Platform</span>
       </div>
     </div>
   );
