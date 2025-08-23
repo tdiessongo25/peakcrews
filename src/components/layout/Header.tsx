@@ -40,29 +40,27 @@ export default function Header() {
   // Logo component with proper aspect ratio and error handling
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
-      {!logoError ? (
-        <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
-          <Image
-            src="/logo56.png"
-            alt="PeakCrews"
-            width={64}
-            height={64}
-            className="w-full h-full object-contain"
-            onError={() => {
-              console.error('Logo failed to load');
-              setLogoError(true);
-            }}
-            onLoad={() => {
-              console.log('Logo loaded successfully');
-            }}
-            priority
-          />
-        </div>
-      ) : (
-        <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-primary rounded-lg flex items-center justify-center">
-          <span className="text-primary-foreground font-bold text-xl md:text-2xl lg:text-3xl">P</span>
-        </div>
-      )}
+      <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
+        <img
+          src="/logo-64.png"
+          alt="PeakCrews"
+          className="w-full h-full object-contain"
+          onError={(e) => {
+            console.error('Logo failed to load:', e);
+            setLogoError(true);
+          }}
+          onLoad={() => {
+            console.log('Logo loaded successfully');
+            setLogoError(false);
+          }}
+          style={{ display: 'block' }}
+        />
+        {logoError && (
+          <div className="absolute inset-0 bg-primary rounded-lg flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-xl md:text-2xl lg:text-3xl">P</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 
