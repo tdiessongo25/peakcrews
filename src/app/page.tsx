@@ -42,6 +42,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import constructionWorkersImage from "@/assets/construction_workers.png";
 
 export default function Home() {
   const features = [
@@ -485,7 +486,7 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-emerald-500/10 rounded-3xl blur-3xl" />
                 <Image 
-                  src="/construction_workers.png" 
+                  src={constructionWorkersImage} 
                   alt="Diverse group of skilled tradespeople" 
                   width={600} 
                   height={400} 
