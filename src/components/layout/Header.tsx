@@ -48,10 +48,6 @@ export default function Header() {
           priority
         />
       </div>
-      <div className="flex flex-col">
-        <span className="text-xl md:text-2xl font-bold text-primary">PeakCrews</span>
-        <span className="text-xs text-muted-foreground hidden md:block">Skilled Trades Platform</span>
-      </div>
     </div>
   );
 
