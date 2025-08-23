@@ -42,17 +42,20 @@ export default function Header() {
     <div className="flex items-center gap-2">
       {!logoError ? (
         <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
-          <img
+          <Image
             src="/logo56.png"
             alt="PeakCrews"
+            width={64}
+            height={64}
             className="w-full h-full object-contain"
-            onError={(e) => {
-              console.error('Logo failed to load:', e);
+            onError={() => {
+              console.error('Logo failed to load');
               setLogoError(true);
             }}
             onLoad={() => {
               console.log('Logo loaded successfully');
             }}
+            priority
           />
         </div>
       ) : (
