@@ -40,7 +40,7 @@ export default function Header() {
   // Logo component using imported logo - NO FALLBACK
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
-      <div className="relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
+      <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
         <Image
           src={logoImage}
           alt="PeakCrews"
