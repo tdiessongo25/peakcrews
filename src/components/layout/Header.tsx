@@ -41,24 +41,55 @@ export default function Header() {
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
       <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
-        <img
-          src="/logo-64.png"
-          alt="PeakCrews"
-          className="w-full h-full object-contain"
-          onError={(e) => {
-            console.error('Logo failed to load:', e);
-            setLogoError(true);
-          }}
-          onLoad={() => {
-            console.log('Logo loaded successfully');
-            setLogoError(false);
-          }}
-          style={{ display: 'block' }}
-        />
-        {logoError && (
-          <div className="absolute inset-0 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl md:text-2xl lg:text-3xl">P</span>
-          </div>
+        {!logoError ? (
+          <img
+            src="/logo56.png"
+            alt="PeakCrews"
+            className="w-full h-full object-contain"
+            onError={(e) => {
+              console.error('Logo failed to load:', e);
+              setLogoError(true);
+            }}
+            onLoad={() => {
+              console.log('Logo loaded successfully');
+              setLogoError(false);
+            }}
+            style={{ display: 'block' }}
+          />
+        ) : (
+          // Fallback SVG logo
+          <svg
+            viewBox="0 0 64 64"
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#f97316', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
+              </linearGradient>
+            </defs>
+            {/* Mountain shapes */}
+            <path
+              d="M20 40 L32 20 L44 40 L32 35 Z"
+              fill="url(#logoGradient)"
+            />
+            <path
+              d="M15 45 L32 25 L49 45 L32 40 Z"
+              fill="url(#logoGradient)"
+              opacity="0.8"
+            />
+            {/* Text */}
+            <text
+              x="32"
+              y="55"
+              textAnchor="middle"
+              className="text-xs font-bold fill-gray-800"
+              style={{ fontSize: '8px', fontWeight: 'bold' }}
+            >
+              PeakCrews
+            </text>
+          </svg>
         )}
       </div>
     </div>
