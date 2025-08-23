@@ -43,7 +43,7 @@ export default function Header() {
       {!logoError ? (
         <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
           <img
-            src="/logo-64.png"
+            src="/logo56.png"
             alt="PeakCrews"
             className="w-full h-full object-contain"
             onError={(e) => {
