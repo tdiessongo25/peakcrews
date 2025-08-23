@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { NotificationBadge } from '@/components/ui/notification-badge';
 import { useState } from 'react';
+import logoImage from '@/assets/logo48.png';
 
 export default function Header() {
   const { role, currentUser, logout, isLoading, isAuthenticated } = useUser();
@@ -37,17 +38,16 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Logo component using YOUR logo from public folder
+  // Logo component using imported logo
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
       <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
-        <img
-          src="/logo48.png"
+        <Image
+          src={logoImage}
           alt="PeakCrews"
           className="w-full h-full object-contain"
           onError={(e) => {
             console.error('Logo failed to load:', e);
-            console.error('Logo URL attempted:', '/logo48.png');
             setLogoError(true);
           }}
           onLoad={() => {
