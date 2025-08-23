@@ -28,7 +28,6 @@ import logoImage from '@/assets/logo48.png';
 export default function Header() {
   const { role, currentUser, logout, isLoading, isAuthenticated } = useUser();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -38,7 +37,7 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Logo component using imported logo
+  // Logo component using imported logo - NO FALLBACK
   const LogoComponent = () => (
     <div className="flex items-center gap-2">
       <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
@@ -46,20 +45,8 @@ export default function Header() {
           src={logoImage}
           alt="PeakCrews"
           className="w-full h-full object-contain"
-          onError={(e) => {
-            console.error('Logo failed to load:', e);
-            setLogoError(true);
-          }}
-          onLoad={() => {
-            console.log('Logo loaded successfully');
-            setLogoError(false);
-          }}
+          priority
         />
-        {logoError && (
-          <div className="absolute inset-0 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl md:text-2xl lg:text-3xl">P</span>
-          </div>
-        )}
       </div>
       <div className="flex flex-col">
         <span className="text-xl md:text-2xl font-bold text-primary">PeakCrews</span>
