@@ -52,13 +52,21 @@ export function middleware(request: NextRequest) {
       }
     }
 
-    // Bot protection
+    // Bot protection (only block obvious malicious bots)
     const userAgent = request.headers.get('user-agent') || '';
-    const suspiciousPatterns = [
-      /bot/i,
-      /crawler/i,
-      /spider/i,
-      /scraper/i
+    const maliciousPatterns = [
+      /sqlmap/i,
+      /nikto/i,
+      /nmap/i,
+      /masscan/i,
+      /dirb/i,
+      /gobuster/i,
+      /wfuzz/i,
+      /burp/i,
+      /zap/i,
+      /acunetix/i,
+      /nessus/i,
+      /openvas/i
     ];
 
     // Allow legitimate bots (Google, Bing, etc.)
@@ -69,27 +77,22 @@ export function middleware(request: NextRequest) {
       'duckduckbot',
       'facebookexternalhit',
       'twitterbot',
-      'linkedinbot'
+      'linkedinbot',
+      'whatsapp',
+      'telegram',
+      'discord',
+      'slack'
     ];
 
     const isAllowedBot = allowedBots.some(bot => userAgent.toLowerCase().includes(bot));
+    const isMaliciousBot = maliciousPatterns.some(pattern => pattern.test(userAgent));
     
-    if (!isAllowedBot && suspiciousPatterns.some(pattern => pattern.test(userAgent))) {
+    if (!isAllowedBot && isMaliciousBot) {
       return new NextResponse('Access denied', { status: 403 });
     }
 
-    // Block requests with suspicious headers
-    const suspiciousHeaders: string[] = [
-      'x-forwarded-host',
-      'x-forwarded-server',
-      'x-forwarded-uri'
-    ];
-
-    for (const header of suspiciousHeaders) {
-      if (request.headers.get(header)) {
-        return new NextResponse('Suspicious request detected', { status: 400 });
-      }
-    }
+    // REMOVED: Suspicious headers check - these headers are legitimate from hosting providers
+    // x-forwarded-* headers are normal and added by Vercel, Cloudflare, etc.
   }
 
   // Validate request method
