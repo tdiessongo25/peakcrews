@@ -269,40 +269,27 @@ export default function Home() {
                   priority
                 />
                 
-                {/* Enhanced Floating Stats Cards */}
-                <div className="absolute -top-8 -left-8 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-orange-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <Users className="h-7 w-7 text-white" />
+                {/* Authentic Trust Indicators */}
+                <div className="absolute -top-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-orange-200 transform hover:scale-105 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <Shield className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-3xl text-orange-600">2,500+</div>
-                      <div className="text-sm text-muted-foreground font-medium">Active Workers</div>
+                      <div className="font-bold text-lg text-orange-600">Verified</div>
+                      <div className="text-sm text-muted-foreground">Profiles</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-8 -right-8 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-blue-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <Briefcase className="h-7 w-7 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-3xl text-blue-600">1,200+</div>
-                      <div className="text-sm text-muted-foreground font-medium">Jobs Completed</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* New Floating Success Rate Card */}
-                <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-green-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
+                <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-blue-200 transform hover:scale-105 transition-all duration-300">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                      <CheckCircle className="h-5 w-5 text-white" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <Zap className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-xl text-green-600">98%</div>
-                      <div className="text-xs text-muted-foreground font-medium">Success Rate</div>
+                      <div className="font-bold text-lg text-blue-600">Instant</div>
+                      <div className="text-sm text-muted-foreground">Matching</div>
                     </div>
                   </div>
                 </div>
