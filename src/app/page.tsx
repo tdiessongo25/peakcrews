@@ -260,17 +260,14 @@ export default function Home() {
 
               {/* Right Column - Hero Image */}
               <div className="relative">
-                <div className="relative z-10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-emerald-500/10 rounded-3xl blur-3xl" />
-                  <Image
-                    src={constructionWorkersImage}
-                    alt="Diverse group of skilled tradespeople working together"
-                    width={600}
-                    height={400}
-                    className="relative rounded-3xl shadow-2xl border border-white/20 transform hover:scale-105 transition-transform duration-500"
-                    priority
-                  />
-                </div>
+                <Image
+                  src={constructionWorkersImage}
+                  alt="Diverse group of skilled tradespeople working together"
+                  width={600}
+                  height={400}
+                  className="rounded-3xl shadow-2xl border border-white/20 transform hover:scale-105 transition-transform duration-500"
+                  priority
+                />
                 
                 {/* Enhanced Floating Stats Cards */}
                 <div className="absolute -top-8 -left-8 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-orange-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
