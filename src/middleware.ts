@@ -19,44 +19,40 @@ export function middleware(request: NextRequest) {
   // Only apply strict security in production
   const isProduction = process.env.NODE_ENV === 'production';
   
-  // Temporarily disable strict security checks for debugging
+  // CRITICAL FIX: Re-enable security checks in production
   if (isProduction) {
-    return response; // Skip all security checks for now
-  }
-
-  // Rate limiting for API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
-    const now = Date.now();
-    
-    const clientData = rateLimitStore.get(clientIP);
-    
-    if (!clientData || now > clientData.resetTime) {
-      // First request or window expired
-      rateLimitStore.set(clientIP, {
-        count: 1,
-        resetTime: now + RATE_LIMIT_WINDOW
-      });
-    } else if (clientData.count >= RATE_LIMIT_MAX_REQUESTS) {
-      // Rate limit exceeded
-      return new NextResponse(
-        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
-        {
-          status: 429,
-          headers: {
-            'Content-Type': 'application/json',
-            'Retry-After': '60'
+    // Rate limiting for API routes
+    if (request.nextUrl.pathname.startsWith('/api/')) {
+      const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+      const now = Date.now();
+      
+      const clientData = rateLimitStore.get(clientIP);
+      
+      if (!clientData || now > clientData.resetTime) {
+        // First request or window expired
+        rateLimitStore.set(clientIP, {
+          count: 1,
+          resetTime: now + RATE_LIMIT_WINDOW
+        });
+      } else if (clientData.count >= RATE_LIMIT_MAX_REQUESTS) {
+        // Rate limit exceeded
+        return new NextResponse(
+          JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+          {
+            status: 429,
+            headers: {
+              'Content-Type': 'application/json',
+              'Retry-After': '60'
+            }
           }
-        }
-      );
-    } else {
-      // Increment request count
-      clientData.count++;
+        );
+      } else {
+        // Increment request count
+        clientData.count++;
+      }
     }
-  }
 
-  // Bot protection (only in production)
-  if (isProduction) {
+    // Bot protection
     const userAgent = request.headers.get('user-agent') || '';
     const suspiciousPatterns = [
       /bot/i,
@@ -81,34 +77,25 @@ export function middleware(request: NextRequest) {
     if (!isAllowedBot && suspiciousPatterns.some(pattern => pattern.test(userAgent))) {
       return new NextResponse('Access denied', { status: 403 });
     }
+
+    // Block requests with suspicious headers
+    const suspiciousHeaders: string[] = [
+      'x-forwarded-host',
+      'x-forwarded-server',
+      'x-forwarded-uri'
+    ];
+
+    for (const header of suspiciousHeaders) {
+      if (request.headers.get(header)) {
+        return new NextResponse('Suspicious request detected', { status: 400 });
+      }
+    }
   }
 
   // Validate request method
   const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'];
   if (!allowedMethods.includes(request.method)) {
     return new NextResponse('Method not allowed', { status: 405 });
-  }
-
-  // Block requests with suspicious headers (only in production)
-  // Note: x-forwarded-* headers are commonly added by hosting providers like Vercel
-  if (isProduction) {
-    const suspiciousHeaders: string[] = [
-      // Removed x-forwarded-* headers as they're legitimate from hosting providers
-    ];
-
-    for (const header of suspiciousHeaders) {
-      if (request.headers.get(header)) {
-        return new NextResponse('Invalid request', { status: 400 });
-      }
-    }
-  }
-
-  // Validate content type for POST requests (only in production)
-  if (isProduction && request.method === 'POST') {
-    const contentType = request.headers.get('content-type');
-    if (contentType && !contentType.includes('application/json') && !contentType.includes('multipart/form-data')) {
-      return new NextResponse('Invalid content type', { status: 400 });
-    }
   }
 
   return response;
