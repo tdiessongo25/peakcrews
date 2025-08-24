@@ -204,52 +204,98 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(249,115,22,0.15),transparent_50%)]" />
         
-        <div className="relative container mx-auto px-4 py-20 md:py-24 lg:py-28 text-center">
-          <div className="max-w-5xl mx-auto">
-            <Badge variant="secondary" className="mb-8 px-8 py-4 text-sm font-medium bg-white/95 backdrop-blur-md border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <Sparkles className="h-5 w-5 mr-3 text-orange-500 animate-pulse" />
-              AI-Powered Job Matching Platform
-            </Badge>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
-              Your <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 bg-clip-text text-transparent drop-shadow-lg">Next Project</span> 
-              <br />Starts with <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent drop-shadow-lg">PeakCrews</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-10 leading-relaxed">
-              The fast lane for skilled trades and urgent job needs. Find reliable workers or post your job in minutes, not days.
-              <br />Powered by AI to match the perfect talent with every opportunity.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-              <Button size="lg" className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:from-orange-600 hover:via-orange-700 hover:to-orange-800 text-white font-semibold px-12 py-8 shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg transform hover:scale-105 hover:-translate-y-1" asChild>
-                <Link href="/jobs">
-                  <Search className="mr-3 h-6 w-6" /> 
-                  Find Work Now
-                  <ArrowRight className="ml-3 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="px-12 py-8 border-2 border-blue-600 hover:bg-blue-50 bg-white/95 backdrop-blur-md shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg transform hover:scale-105 hover:-translate-y-1" asChild>
-                <Link href="/post-job">
-                  <UserPlus className="mr-3 h-6 w-6" /> 
-                  Hire Skilled Talent
-                </Link>
-              </Button>
-            </div>
-            
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-              <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <Shield className="h-6 w-6 text-orange-500" />
-                <span className="font-semibold text-lg">Verified Workers</span>
+        <div className="relative container mx-auto px-4 py-20 md:py-24 lg:py-28">
+          <div className="max-w-7xl mx-auto">
+            {/* Hero Content - Two Column Layout */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Text Content */}
+              <div className="text-center lg:text-left">
+                <Badge variant="secondary" className="mb-8 px-8 py-4 text-sm font-medium bg-white/95 backdrop-blur-md border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <Sparkles className="h-5 w-5 mr-3 text-orange-500 animate-pulse" />
+                  AI-Powered Job Matching Platform
+                </Badge>
+                
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
+                  Your <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 bg-clip-text text-transparent drop-shadow-lg">Next Project</span> 
+                  <br />Starts with <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent drop-shadow-lg">PeakCrews</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+                  The fast lane for skilled trades and urgent job needs. Find reliable workers or post your job in minutes, not days.
+                  <br />Powered by AI to match the perfect talent with every opportunity.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center mb-12">
+                  <Button size="lg" className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:from-orange-600 hover:via-orange-700 hover:to-orange-800 text-white font-semibold px-12 py-8 shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg transform hover:scale-105 hover:-translate-y-1" asChild>
+                    <Link href="/jobs">
+                      <Search className="mr-3 h-6 w-6" /> 
+                      Find Work Now
+                      <ArrowRight className="ml-3 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="px-12 py-8 border-2 border-blue-600 hover:bg-blue-50 bg-white/95 backdrop-blur-md shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg transform hover:scale-105 hover:-translate-y-1" asChild>
+                    <Link href="/post-job">
+                      <UserPlus className="mr-3 h-6 w-6" /> 
+                      Hire Skilled Talent
+                    </Link>
+                  </Button>
+                </div>
+                
+                {/* Trust Indicators */}
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 text-sm">
+                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Shield className="h-6 w-6 text-orange-500" />
+                    <span className="font-semibold text-lg">Verified Workers</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Clock className="h-6 w-6 text-blue-500" />
+                    <span className="font-semibold text-lg">24/7 Support</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Star className="h-6 w-6 text-orange-500" />
+                    <span className="font-semibold text-lg">4.9/5 Rating</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <Clock className="h-6 w-6 text-blue-500" />
-                <span className="font-semibold text-lg">24/7 Support</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <Star className="h-6 w-6 text-orange-500" />
-                <span className="font-semibold text-lg">4.9/5 Rating</span>
+
+              {/* Right Column - Hero Image */}
+              <div className="relative">
+                <div className="relative z-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-emerald-500/10 rounded-3xl blur-3xl" />
+                  <Image
+                    src={constructionWorkersImage}
+                    alt="Diverse group of skilled tradespeople working together"
+                    width={600}
+                    height={400}
+                    className="relative rounded-3xl shadow-2xl border border-white/20 transform hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                </div>
+                
+                {/* Floating Stats Cards */}
+                <div className="absolute -top-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-orange-200 transform hover:scale-105 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-2xl text-orange-600">2,500+</div>
+                      <div className="text-sm text-muted-foreground">Active Workers</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-blue-200 transform hover:scale-105 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                      <Briefcase className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-2xl text-blue-600">1,200+</div>
+                      <div className="text-sm text-muted-foreground">Jobs Completed</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -354,21 +400,199 @@ export default function Home() {
                       {feature.icon}
                     </div>
                   </div>
-                  <CardTitle className="text-2xl font-bold">{feature.title}</CardTitle>
+                  <CardTitle className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">{feature.title}</CardTitle>
+                  <CardDescription className="text-lg text-muted-foreground leading-relaxed">{feature.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <CardDescription className="text-lg leading-relaxed mb-8 text-muted-foreground">
-                    {feature.description}
-                  </CardDescription>
-                  <Button variant="link" asChild className="text-primary font-semibold group-hover:translate-x-1 transition-transform text-lg">
+                  <Button className={`bg-gradient-to-r ${feature.gradient} hover:shadow-xl transition-all duration-300 transform hover:scale-105`} asChild>
                     <Link href={feature.link}>
-                      {feature.linkText} 
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      {feature.linkText}
+                      <ChevronRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Showcase Section */}
+      <section className="w-full py-20 bg-gradient-to-br from-slate-50 via-white to-orange-50/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-6 px-6 py-3 text-sm font-medium bg-white/95 backdrop-blur-md border border-blue-200 shadow-lg">
+              <Play className="h-5 w-5 mr-2 text-blue-500" />
+              Platform Preview
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-blue-700 to-orange-600 bg-clip-text text-transparent">
+              See PeakCrews in Action
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Experience the intuitive interface that makes job matching effortless. 
+              <br />Professional, fast, and designed for real-world use.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left - Platform Screenshot */}
+            <div className="relative">
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-orange-500/10 rounded-3xl blur-3xl" />
+                <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-500">
+                  {/* Mock Browser Header */}
+                  <div className="bg-gray-100 px-6 py-3 flex items-center gap-2 border-b border-gray-200">
+                    <div className="flex gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div className="flex-1 bg-white rounded-lg px-4 py-2 mx-4 text-sm text-gray-600">
+                      peakcrews.com/jobs
+                    </div>
+                  </div>
+                  
+                  {/* Mock Platform Interface */}
+                  <div className="p-8">
+                    <div className="space-y-6">
+                      {/* Search Bar */}
+                      <div className="bg-gray-50 rounded-xl p-4">
+                        <div className="flex items-center gap-3">
+                          <Search className="h-5 w-5 text-gray-400" />
+                          <div className="flex-1 bg-white rounded-lg px-4 py-3 text-gray-600">
+                            Search for electricians, plumbers, carpenters...
+                          </div>
+                          <Button size="sm" className="bg-orange-500 hover:bg-orange-600">
+                            Search
+                          </Button>
+                        </div>
+                      </div>
+                      
+                      {/* Job Cards */}
+                      <div className="space-y-4">
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                          <div className="flex items-start justify-between mb-3">
+                            <h3 className="font-semibold text-lg text-gray-900">Urgent Electrical Repair</h3>
+                            <Badge className="bg-orange-100 text-orange-700">Urgent</Badge>
+                          </div>
+                          <p className="text-gray-600 mb-3">Need licensed electrician for emergency repair in downtown area...</p>
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <div className="flex items-center gap-1">
+                              <MapPin className="h-4 w-4" />
+                              Downtown
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <DollarSign className="h-4 w-4" />
+                              $150-200/hr
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-4 w-4" />
+                              2 hours ago
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                          <div className="flex items-start justify-between mb-3">
+                            <h3 className="font-semibold text-lg text-gray-900">Kitchen Remodel Project</h3>
+                            <Badge className="bg-blue-100 text-blue-700">Large Project</Badge>
+                          </div>
+                          <p className="text-gray-600 mb-3">Complete kitchen renovation including cabinets, countertops, and plumbing...</p>
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <div className="flex items-center gap-1">
+                              <MapPin className="h-4 w-4" />
+                              Suburban Area
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <DollarSign className="h-4 w-4" />
+                              $15,000-25,000
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              Start next week
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-orange-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                    <Zap className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-lg text-orange-600">Instant</div>
+                    <div className="text-xs text-muted-foreground">Matching</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right - Benefits List */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+                  Professional Interface
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  Our platform combines powerful functionality with intuitive design, making it easy for both workers and contractors to find what they need quickly.
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Search className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Smart Search & Filters</h4>
+                    <p className="text-muted-foreground">Find exactly what you're looking for with advanced search capabilities and intelligent filtering options.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Direct Communication</h4>
+                    <p className="text-muted-foreground">Connect directly with workers or contractors through our built-in messaging system.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Shield className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Verified Profiles</h4>
+                    <p className="text-muted-foreground">Every user is verified and background-checked for your peace of mind and security.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <FileText className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Detailed Job Descriptions</h4>
+                    <p className="text-muted-foreground">Comprehensive job details with requirements, budget, timeline, and location information.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Button size="lg" className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" asChild>
+                <Link href="/jobs">
+                  Explore the Platform
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
