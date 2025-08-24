@@ -251,9 +251,9 @@ export default function Home() {
                     <Clock className="h-6 w-6 text-blue-500" />
                     <span className="font-semibold text-lg">24/7 Support</span>
                   </div>
-                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <Star className="h-6 w-6 text-orange-500" />
-                    <span className="font-semibold text-lg">4.9/5 Rating</span>
+                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-8 py-4 rounded-full border border-green-200 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Zap className="h-6 w-6 text-green-500" />
+                    <span className="font-semibold text-lg">Instant Matching</span>
                   </div>
                 </div>
               </div>
@@ -272,27 +272,40 @@ export default function Home() {
                   />
                 </div>
                 
-                {/* Floating Stats Cards */}
-                <div className="absolute -top-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-orange-200 transform hover:scale-105 transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
-                      <Users className="h-6 w-6 text-white" />
+                {/* Enhanced Floating Stats Cards */}
+                <div className="absolute -top-8 -left-8 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-orange-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Users className="h-7 w-7 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-2xl text-orange-600">2,500+</div>
-                      <div className="text-sm text-muted-foreground">Active Workers</div>
+                      <div className="font-bold text-3xl text-orange-600">2,500+</div>
+                      <div className="text-sm text-muted-foreground font-medium">Active Workers</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-blue-200 transform hover:scale-105 transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                      <Briefcase className="h-6 w-6 text-white" />
+                <div className="absolute -bottom-8 -right-8 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-blue-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Briefcase className="h-7 w-7 text-white" />
                     </div>
                     <div>
-                      <div className="font-bold text-2xl text-blue-600">1,200+</div>
-                      <div className="text-sm text-muted-foreground">Jobs Completed</div>
+                      <div className="font-bold text-3xl text-blue-600">1,200+</div>
+                      <div className="text-sm text-muted-foreground font-medium">Jobs Completed</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* New Floating Success Rate Card */}
+                <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-green-200 transform hover:scale-110 transition-all duration-300 hover:shadow-3xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-xl text-green-600">98%</div>
+                      <div className="text-xs text-muted-foreground font-medium">Success Rate</div>
                     </div>
                   </div>
                 </div>
@@ -303,38 +316,53 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="w-full py-20 bg-gradient-to-br from-slate-50 via-white to-orange-50/20">
+      <section className="w-full py-24 bg-gradient-to-br from-slate-50 via-white to-orange-50/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-6 px-6 py-3 text-sm font-medium bg-white/95 backdrop-blur-md border border-orange-200 shadow-lg">
-              <Rocket className="h-5 w-5 mr-2 text-orange-500" />
-              Simple Process
+          <div className="text-center mb-20">
+            <Badge variant="outline" className="mb-8 px-8 py-4 text-sm font-medium bg-white/95 backdrop-blur-md border border-orange-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <Rocket className="h-6 w-6 mr-3 text-orange-500" />
+              Simple 3-Step Process
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-600 via-orange-700 to-blue-700 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-orange-700 to-blue-700 bg-clip-text text-transparent">
               How PeakCrews Works
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Getting started is simple. Whether you're looking for work or hiring talent, 
               <br />our platform makes the process seamless and efficient.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {howItWorks.map((step, index) => (
               <div key={index} className="relative group">
-                <Card className="text-center p-8 h-full bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
-                      {step.step}
+                {/* Connection Lines */}
+                {index < howItWorks.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 transform -translate-y-1/2 z-0" />
+                )}
+                
+                <Card className="relative text-center p-10 h-full bg-white/95 backdrop-blur-md border border-gray-200/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 rounded-3xl overflow-hidden group-hover:border-orange-300">
+                  {/* Background Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10">
+                    {/* Step Number */}
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-2xl shadow-2xl border-4 border-white`}>
+                        {step.step}
+                      </div>
                     </div>
-                  </div>
-                  <div className={`p-6 rounded-2xl bg-gradient-to-br ${step.gradient} mb-6 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <div className="text-white">
-                      {step.icon}
+                    
+                    {/* Icon */}
+                    <div className={`p-8 rounded-3xl bg-gradient-to-br ${step.gradient} mb-8 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl`}>
+                      <div className="text-white">
+                        {step.icon}
+                      </div>
                     </div>
+                    
+                    {/* Content */}
+                    <h3 className="font-bold text-3xl mb-6 text-foreground bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">{step.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-lg font-medium">{step.description}</p>
                   </div>
-                  <h3 className="font-bold text-2xl mb-4 text-foreground">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-lg">{step.description}</p>
                 </Card>
               </div>
             ))}
@@ -343,32 +371,37 @@ export default function Home() {
       </section>
 
       {/* Value Propositions Section */}
-      <section className="w-full py-20 bg-gradient-to-br from-white via-blue-50/30 to-slate-50">
+      <section className="w-full py-24 bg-gradient-to-br from-white via-blue-50/30 to-slate-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-6 px-6 py-3 text-sm font-medium bg-white/95 backdrop-blur-md border border-blue-200 shadow-lg">
-              <Rocket className="h-5 w-5 mr-2 text-blue-500" />
+          <div className="text-center mb-20">
+            <Badge variant="outline" className="mb-8 px-8 py-4 text-sm font-medium bg-white/95 backdrop-blur-md border border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <Rocket className="h-6 w-6 mr-3 text-blue-500" />
               Why We're Different
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-blue-700 to-orange-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-blue-600 via-blue-700 to-orange-600 bg-clip-text text-transparent">
               Why PeakCrews Delivers Results
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Built for speed, security, and success in the trades industry. 
               <br />Every feature designed with real professionals in mind.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {valueProps.map((prop, index) => (
               <div key={index} className="group">
-                <Card className="text-center p-8 h-full bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className={`p-6 rounded-2xl bg-gradient-to-br ${prop.gradient} mb-6 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <div className="text-white">
-                      {prop.icon}
+                <Card className="text-center p-8 h-full bg-white/95 backdrop-blur-md border border-gray-200/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 rounded-3xl overflow-hidden group-hover:border-blue-300">
+                  {/* Background Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-orange-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10">
+                    <div className={`p-8 rounded-3xl bg-gradient-to-br ${prop.gradient} mb-8 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl`}>
+                      <div className="text-white">
+                        {prop.icon}
+                      </div>
                     </div>
+                    <h3 className="font-bold text-2xl mb-6 text-foreground bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">{prop.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-lg font-medium">{prop.description}</p>
                   </div>
-                  <h3 className="font-bold text-xl mb-4 text-foreground">{prop.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-lg">{prop.description}</p>
                 </Card>
               </div>
             ))}
